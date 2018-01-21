@@ -20,6 +20,8 @@ namespace SportsStore
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                //config change required by EFC to dependency inject feature//without change, exception will be thrown when trying to create DB schema
+                .UseDefaultServiceProvider(options => options.ValidateScopes=false)
                 .Build();
     }
 }
