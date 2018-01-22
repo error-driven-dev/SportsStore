@@ -4,10 +4,19 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>SportStore</title>
+    <link asp-href-include="/lib/bootstrap/dist/**/*.min.css" asp-href-exclude="**/*-reboot*,**/*-grid*" rel="stylesheet" />
 </head>
 <body>
+<div class="navbar navbar-dark bg-dark" role="navigation">
+    <a class="navbar-brand" href="#">Sports Store</a>
+</div>
+<div class="row m-1 p-1">
+    <div id="categories" class="col-3"> use this later
+    </div>
+    <div class="col-9">@RenderBody()</div>
+</div>
     <div>
-        @RenderBody()
+        
     </div>
 </body>
 </html>
