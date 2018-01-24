@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models;
@@ -22,13 +23,20 @@ namespace SportsStore.Controllers
             _repository = repo;
         }
         //default action -- method that returns the result of the View method and passing the vals of the products property of the repository field.
-        public ViewResult List(int productPage = 1)
+        public ViewResult List(string category, int productPage = 1)
         {
             //passes a single object to the view...2 objects were combined into a single viewmodel for this purpose)
             return View( new ProductsListViewModel { 
-                Products =_repository.Products.OrderBy(p => p.ProductID).Skip((productPage - 1) * PageSize).Take(PageSize), PagingInfo = new PagingInfo{CurrentPage = productPage, ItemsPerPage = PageSize, TotalItems= _repository.Products.Count()}});
+                Products =_repository.Products.Where(p => category == null || p.Category== category).OrderBy(p => p.ProductID).Skip((productPage - 1) * PageSize).Take(PageSize),
+                PagingInfo = new PagingInfo{CurrentPage = productPage, ItemsPerPage = PageSize,
+                    TotalItems = (category == null ?_repository.Products.Count(): _repository.Products.Count(p => p.Category == category))}, CurrentCategory = category});
         }
 
-        
+        public string Next()
+        {
+            return "next";
+        }
+
+
     }
 }

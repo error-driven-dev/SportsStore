@@ -45,13 +45,29 @@ namespace SportsStore
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseMvc(routes =>
-                {
-                    routes.MapRoute(name: "pagination", template: "Products/Page{productPage}",
-                        defaults: new {Controller = "Product", action = "List"});
+            {
+                routes.MapRoute(name: null, 
+                    template: "{category}/Page{productPage:int}",
+                    defaults: new {Controller = "Product", action = "List", productPage = 1});
+
+                    routes.MapRoute(
+                        name: null, 
+                        template: "Page{productPage:int}", 
+                        defaults: new{Controller = "Product", action = "List", productPage=1});
+
+                routes.MapRoute(
+                        name: null, 
+                        template: "{category}", 
+                        defaults: new{Controller = "Product", action = "List", productPage=1});
+
+                routes.MapRoute(
+                        name: null, 
+                        template: "", 
+                        defaults: new{Controller = "Product", action = "List", productPage=1});
                 
                     
                     //setting up default route pattern, controller/action/id -- where if nothing is entered Product will be defaultcontroller and List will be default action, id can be null.
-                    routes.MapRoute(name: "default", template: "{controller=Product}/{action=List}/{id?}");
+                    routes.MapRoute(name: null, template: "{controller}/{action}/{id?}");
                 });
             SeedData.EnsurePopulated(app);
 
