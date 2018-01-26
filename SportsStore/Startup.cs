@@ -31,6 +31,8 @@ namespace SportsStore
             //changing transient to point to  EF Product Repo
             services.AddTransient<IProductRepository, EFProductRepository>();
             services.AddMvc();
+            services.AddMemoryCache();
+            services.AddSession();
 
         }
 
@@ -44,6 +46,7 @@ namespace SportsStore
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(name: null, 
