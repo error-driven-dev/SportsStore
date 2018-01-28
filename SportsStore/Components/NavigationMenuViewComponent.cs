@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Navigation component: logic that queries all the available categories from the repository and sends them to the defualt view for the cartcontroller
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

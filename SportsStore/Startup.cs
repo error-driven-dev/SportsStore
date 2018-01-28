@@ -30,6 +30,10 @@ namespace SportsStore
             
             //changing transient to point to  EF Product Repo
             services.AddTransient<IProductRepository, EFProductRepository>();
+            //register SessionCart service; same object should be used for related requests; related to SessionCart service
+            services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();

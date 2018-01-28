@@ -11,12 +11,12 @@ namespace Microsoft.AspNetCore.Http.Features
 
     public static class SessionExtensions
     {
-        public static void SetJobj<T>(this ISession session, string key, T value)
+        public static void SetJson<T>(this ISession session, string key, T value)
         {
             session.SetString(key, JsonConvert.SerializeObject(value));
         }
 
-        public static T GetJobj<T>(this ISession session, string key)
+        public static T GetJson<T>(this ISession session, string key)
         {
             var value = session.GetString(key);
             return value == null ? default(T) :
