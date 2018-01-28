@@ -1,0 +1,77 @@
+﻿@model SportsStore.Models.Order
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<h2>Check out now</h2>
+
+<h4>Please enter your details and we'll ship our goods right away</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Checkout" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+    <h3>Ship to</h3>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Name:</label>
+        <input asp-for="Name" class="form-control" />
+        @*                <span asp-validation-for="Name" class="text-danger"></span>*@
+    </div>
+    <h3>Address</h3>
+            <div class="form-group">
+                <label asp-for="Line1" class="control-label">Line 1:</label>
+                <input asp-for="Line1" class="form-control" />
+@*                <span asp-validation-for="Line1" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="Line2" class="control-label">Line 2:</label>
+                <input asp-for="Line2" class="form-control" />
+                <span asp-validation-for="Line2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Line3" class="control-label">Line 3:</label>
+                <input asp-for="Line3" class="form-control" />
+@*                <span asp-validation-for="Line3" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label">City:</label>
+                <input asp-for="City" class="form-control" />
+@*                <span asp-validation-for="City" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label">State: </label>
+                <input asp-for="State" class="form-control" />
+@*                <span asp-validation-for="State" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="Zip" class="control-label">Zip: </label>
+                <input asp-for="Zip" class="form-control" />
+@*                <span asp-validation-for="Zip" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label">Country: </label>
+                <input asp-for="Country" class="form-control" />
+@*                <span asp-validation-for="Country" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label> 
+                        <input asp-for="IsGift"> Gift wrap these items?
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Complete Order" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@*@section Scripts {*@
+@*    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@
+@*}*@

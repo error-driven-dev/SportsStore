@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions
+@model SportsStore.Models.Cart
+
+@if(Model.Contents.Count()>0)
+{ <small class="navbar-text">
+<b>Your Cart:</b>
+@Model.Contents.Sum(i => i.Quantity)
+@Model.ComputeTotal().ToString("c") 
+  </small>} 
+ <a class="btn btn-xs btn-secondary" asp-controller="cart" asp-action="Index" asp-route-returnurl="@ViewContext.HttpContext.Request.GetEncodedPathAndQuery()">
+     <i class="fa fa-shopping-cart"></i>
+</a>
+

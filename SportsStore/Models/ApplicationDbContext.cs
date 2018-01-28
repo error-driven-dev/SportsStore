@@ -14,6 +14,7 @@ namespace SportsStore.Models
 
         //provides access to product objects in the database; read and write
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
     }
 }
  
